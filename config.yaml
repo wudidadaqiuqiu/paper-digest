@@ -11,7 +11,7 @@ email:
 llm:
   api_base: "https://api.deepseek.com/v1"  # OpenAI 兼容接口地址
   # api_key: 通过环境变量 LLM_API_KEY 传入
-  model: "deepseek-v4-pro[1m]"
+  model: "deepseek-v4-pro"
   temperature: 0.3
 
 profile:
