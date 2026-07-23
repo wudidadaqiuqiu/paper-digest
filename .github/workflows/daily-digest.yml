@@ -19,17 +19,17 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r paper-digest/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run paper digest
         env:
           QQ_PASSWORD: ${{ secrets.QQ_PASSWORD }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-        run: python paper-digest/main.py
+        run: python main.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./paper-digest/output
+          publish_dir: ./output
           keep_files: true  # 保留历史 digest 文件
