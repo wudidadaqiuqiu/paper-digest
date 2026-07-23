@@ -1,0 +1,28 @@
+# 邮箱论文整理 Agent 配置
+# 复制此文件为 config.local.yaml 本地测试（不会被 git 追踪）
+
+email:
+  imap_server: imap.qq.com
+  imap_port: 993
+  username: "wudidadaqiuqiu@qq.com"
+  # password: 通过环境变量 QQ_PASSWORD 传入，不要写在这里
+  sender_filter: "scholaralerts-noreply@google.com"  # 只读取来自此发件人的邮件
+
+llm:
+  api_base: "https://api.deepseek.com/v1"  # OpenAI 兼容接口地址
+  # api_key: 通过环境变量 LLM_API_KEY 传入
+  model: "deepseek-v4-pro[1m]"
+  temperature: 0.3
+
+profile:
+  interest: |
+    我对以下研究方向感兴趣：
+    - 大语言模型（LLM）的训练、微调与对齐
+    - AI Agent 与多智能体系统
+    - 检索增强生成（RAG）
+    - 代码生成与程序合成
+  min_score: 6  # 1-10，评分 >= 此值的论文视为感兴趣，翻译标题+摘要
+
+output:
+  dir: ./output
+  max_papers_per_run: 15  # 每次最多处理论文数，控制 token 消耗
