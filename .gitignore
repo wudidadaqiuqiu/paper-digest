@@ -12,7 +12,11 @@ enable_pages.py
 make_public.py
 # 输出目录
 output/
+# 运行时状态
+state.json
+server.log
 # Python
 __pycache__/
 *.pyc
 .DS_Store
+.env

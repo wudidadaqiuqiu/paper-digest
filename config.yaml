@@ -17,12 +17,18 @@ llm:
 profile:
   interest: |
     我对以下研究方向感兴趣：
-    - 大语言模型（LLM）的训练、微调与对齐
-    - AI Agent 与多智能体系统
-    - 检索增强生成（RAG）
-    - 代码生成与程序合成
+    - 无线光通信（Wireless Optical Communication）
+    - 光束指向与捕获跟踪（Beam Pointing, Acquisition and Tracking）
+
+    我不感兴趣的领域：
+    - 自由空间光通信中的大气湍流分析与补偿（Atmospheric turbulence analysis and compensation in FSO）
+    - 自适应光学（Adaptive optics for FSO）
   min_score: 6  # 1-10，评分 >= 此值的论文视为感兴趣，翻译标题+摘要
 
 output:
   dir: ./output
-  max_papers_per_run: 15  # 每次最多处理论文数，控制 token 消耗
+  max_papers_per_run: 15  # 批量处理论文阈值
+
+server:
+  port: 5000
+  password: "paper123"  # HTTP Basic Auth 密码，用户名 admin
