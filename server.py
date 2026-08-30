@@ -7,7 +7,7 @@ import threading
 import re
 import os
 from pathlib import Path
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse
 
 import main as digest
@@ -154,6 +154,7 @@ def build_digest_links():
 
 
 class Handler(BaseHTTPRequestHandler):
+    timeout = 30  # 单连接超时，防止恶意/慢客户端阻塞
 
     def do_AUTH(self):
         """检查 Basic Auth，失败返回 401"""
@@ -268,7 +269,8 @@ class Handler(BaseHTTPRequestHandler):
 def main():
     print(f"Paper Digest 服务启动: http://0.0.0.0:{PORT}")
     print(f"用户名: admin")
-    server = HTTPServer(("0.0.0.0", PORT), Handler)
+    server = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
+    server.daemon_threads = True  # 线程随主进程退出，不阻塞关闭
     try:
         server.serve_forever()
     except KeyboardInterrupt:
